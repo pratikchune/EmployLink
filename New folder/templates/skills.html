@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Skills - SkillTrack</title>
+
+
+    <style>
+
+        /* =================================================
+           RESET
+        ================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            background: #f4f7fb;
+
+            color: #1f2937;
+        }
+
+
+        /* =================================================
+           NAVBAR
+        ================================================= */
+
+        .navbar {
+
+            height: 70px;
+
+            background: #123c69;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 40px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(0,0,0,0.12);
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+        }
+
+
+        .logo span {
+
+            color: #5eead4;
+        }
+
+
+        .nav-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .nav-right a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+        }
+
+
+        .nav-right a:hover {
+
+            color: #5eead4;
+        }
+
+
+        .logout {
+
+            background: #ef4444;
+
+            padding: 9px 18px;
+
+            border-radius: 6px;
+        }
+
+
+        .logout:hover {
+
+            background: #dc2626;
+
+            color: white !important;
+        }
+
+
+        /* =================================================
+           PAGE CONTAINER
+        ================================================= */
+
+        .container {
+
+            width: 92%;
+
+            max-width: 1150px;
+
+            margin: 35px auto;
+        }
+
+
+        /* =================================================
+           PAGE HEADER
+        ================================================= */
+
+        .page-header {
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 30px;
+
+            color: #123c69;
+
+            margin-bottom: 7px;
+        }
+
+
+        .page-header p {
+
+            color: #64748b;
+        }
+
+
+        /* =================================================
+           MESSAGES
+        ================================================= */
+
+        .success {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            padding: 14px 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            border-left:
+                5px solid #22c55e;
+        }
+
+
+        .error {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            padding: 14px 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            border-left:
+                5px solid #ef4444;
+        }
+
+
+        /* =================================================
+           TWO COLUMN LAYOUT
+        ================================================= */
+
+        .skills-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                360px 1fr;
+
+            gap: 25px;
+        }
+
+
+        /* =================================================
+           CARD
+        ================================================= */
+
+        .card {
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+        }
+
+
+        .card-title {
+
+            color: #123c69;
+
+            font-size: 20px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =================================================
+           ADD SKILL FORM
+        ================================================= */
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        label {
+
+            display: block;
+
+            font-weight: 600;
+
+            color: #374151;
+
+            margin-bottom: 7px;
+        }
+
+
+        select,
+        input {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: white;
+        }
+
+
+        select:focus,
+        input:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37,99,235,0.1);
+        }
+
+
+        .btn-add {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #123c69;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .btn-add:hover {
+
+            background: #0f3155;
+        }
+
+
+        /* =================================================
+           SKILL COUNT
+        ================================================= */
+
+        .skill-summary {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 18px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        .skill-summary h2 {
+
+            color: #123c69;
+
+            font-size: 20px;
+        }
+
+
+        .skill-count {
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+        }
+
+
+        /* =================================================
+           SKILL LIST
+        ================================================= */
+
+        .skill-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .skill-item {
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 18px;
+
+            position: relative;
+
+            transition: 0.2s;
+        }
+
+
+        .skill-item:hover {
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,0.07);
+
+            transform: translateY(-2px);
+        }
+
+
+        .skill-name {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #123c69;
+
+            margin-bottom: 8px;
+        }
+
+
+        .skill-category {
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .skill-details {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .badge {
+
+            padding: 5px 9px;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .proficiency {
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+        }
+
+
+        .experience {
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .verified {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        /* =================================================
+           DELETE BUTTON
+        ================================================= */
+
+        .delete-btn {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 15px;
+
+            color: #ef4444;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .delete-btn:hover {
+
+            color: #b91c1c;
+        }
+
+
+        /* =================================================
+           EMPTY STATE
+        ================================================= */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #64748b;
+        }
+
+
+        .empty-icon {
+
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .empty h3 {
+
+            color: #374151;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* =================================================
+           PROFILE INFO
+        ================================================= */
+
+        .trainee-info {
+
+            background: #eff6ff;
+
+            border-radius: 9px;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .trainee-info small {
+
+            display: block;
+
+            color: #64748b;
+
+            margin-bottom: 4px;
+        }
+
+
+        .trainee-info strong {
+
+            color: #123c69;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 850px) {
+
+            .skills-layout {
+
+                grid-template-columns: 1fr;
+            }
+
+            .skill-list {
+
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+
+                padding: 0 20px;
+            }
+
+            .nav-right a:not(.logout) {
+
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     NAVBAR
+======================================================= -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        Skill<span>Track</span>
+
+    </div>
+
+
+    <div class="nav-right">
+
+
+        <a href="{{ url_for('dashboard') }}">
+
+            Dashboard
+
+        </a>
+
+
+        <a href="{{ url_for('profile') }}">
+
+            My Profile
+
+        </a>
+
+
+        <a href="{{ url_for('skills') }}">
+
+            My Skills
+
+        </a>
+
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+
+            Logout
+
+        </a>
+
+
+    </div>
+
+</nav>
+
+
+
+<!-- ======================================================
+     MAIN CONTAINER
+======================================================= -->
+
+<div class="container">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <h1>
+            My Skills
+        </h1>
+
+        <p>
+            Add and manage your professional skills.
+        </p>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         SUCCESS MESSAGE
+    =================================================== -->
+
+    {% if added == "success" %}
+
+        <div class="success">
+
+            ✓ Skill added successfully.
+
+        </div>
+
+    {% endif %}
+
+
+
+    {% if deleted == "success" %}
+
+        <div class="success">
+
+            ✓ Skill removed successfully.
+
+        </div>
+
+    {% endif %}
+
+
+
+    {% if error %}
+
+        <div class="error">
+
+            {{ error }}
+
+        </div>
+
+    {% endif %}
+
+
+
+    <!-- ==================================================
+         TWO COLUMN
+    =================================================== -->
+
+    <div class="skills-layout">
+
+
+        <!-- =================================================
+             LEFT CARD - ADD SKILL
+        ================================================= -->
+
+        <div class="card">
+
+
+            <h2 class="card-title">
+
+                Add New Skill
+
+            </h2>
+
+
+            <div class="trainee-info">
+
+                <small>
+                    Trainee
+                </small>
+
+                <strong>
+                    {{ trainee.full_name }}
+                </strong>
+
+                <small style="margin-top:8px;">
+
+                    SkillTrack ID
+
+                </small>
+
+                <strong>
+
+                    {{ trainee.skilltrack_id }}
+
+                </strong>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('skills') }}"
+            >
+
+
+                <!-- SKILL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Select Skill *
+                    </label>
+
+
+                    <select
+                        name="skill_id"
+                        required
+                    >
+
+                        <option value="">
+
+                            Select a skill
+
+                        </option>
+
+
+                        {% for skill in available_skills %}
+
+                            <option
+                                value="{{ skill.skill_id }}"
+                            >
+
+                                {{ skill.skill_name }}
+
+                                {% if skill.skill_category %}
+
+                                    — {{ skill.skill_category }}
+
+                                {% endif %}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- PROFICIENCY -->
+
+                <div class="form-group">
+
+                    <label>
+                        Proficiency Level *
+                    </label>
+
+
+                    <select
+                        name="proficiency_level"
+                        required
+                    >
+
+                        <option value="">
+
+                            Select proficiency
+
+                        </option>
+
+
+                        <option value="Beginner">
+
+                            Beginner
+
+                        </option>
+
+
+                        <option value="Intermediate">
+
+                            Intermediate
+
+                        </option>
+
+
+                        <option value="Advanced">
+
+                            Advanced
+
+                        </option>
+
+
+                        <option value="Expert">
+
+                            Expert
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- EXPERIENCE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Experience (Years)
+                    </label>
+
+
+                    <input
+                        type="number"
+                        name="years_experience"
+                        min="0"
+                        step="0.1"
+                        value="0"
+                    >
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="btn-add"
+                >
+
+                    + Add Skill
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT CARD - CURRENT SKILLS
+        ================================================= -->
+
+        <div class="card">
+
+
+            <div class="skill-summary">
+
+                <h2>
+
+                    My Current Skills
+
+                </h2>
+
+
+                <div class="skill-count">
+
+                    {{ trainee_skills|length }}
+
+                    Skills
+
+                </div>
+
+            </div>
+
+
+
+            {% if trainee_skills %}
+
+
+                <div class="skill-list">
+
+
+                    {% for skill in trainee_skills %}
+
+
+                        <div class="skill-item">
+
+
+                            <div class="skill-name">
+
+                                {{ skill.skill_name }}
+
+                            </div>
+
+
+                            {% if skill.skill_category %}
+
+                                <div class="skill-category">
+
+                                    {{ skill.skill_category }}
+
+                                </div>
+
+                            {% endif %}
+
+
+
+                            <div class="skill-details">
+
+
+                                <span
+                                    class="badge proficiency"
+                                >
+
+                                    {{ skill.proficiency_level }}
+
+                                </span>
+
+
+                                <span
+                                    class="badge experience"
+                                >
+
+                                    {{ skill.years_experience }}
+
+                                    Years
+
+                                </span>
+
+
+                                {% if skill.is_verified %}
+
+                                    <span
+                                        class="badge verified"
+                                    >
+
+                                        ✓ Verified
+
+                                    </span>
+
+                                {% endif %}
+
+
+                            </div>
+
+
+
+                            <a
+                                href="{{ url_for(
+                                    'delete_skill',
+                                    trainee_skill_id=
+                                    skill.trainee_skill_id
+                                ) }}"
+                                class="delete-btn"
+                                onclick="return confirm(
+                                    'Are you sure you want to remove this skill?'
+                                );"
+                            >
+
+                                Delete
+
+                            </a>
+
+
+                        </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <div class="empty">
+
+
+                    <div class="empty-icon">
+
+                        🛠️
+
+                    </div>
+
+
+                    <h3>
+
+                        No Skills Added Yet
+
+                    </h3>
+
+
+                    <p>
+
+                        Add your first skill using
+                        the form.
+
+                    </p>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

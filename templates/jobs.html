@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmployLink | Explore Jobs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f6fc;
+            color: #17233c;
+        }
+
+        header {
+            background: #101b32;
+            color: white;
+            padding: 24px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            color: #dce6f7;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 38px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            margin-bottom: 28px;
+        }
+
+        .page-heading h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #748098;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .job-card {
+            background: white;
+            border: 1px solid #e5eaf3;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 7px 24px #17233c08;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .job-tag {
+            display: inline-block;
+            align-self: flex-start;
+            background: #e5efff;
+            color: #1d4ed8;
+            border-radius: 7px;
+            padding: 6px 10px;
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+
+        .job-card h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .company {
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .details {
+            color: #68758d;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #4b5870;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        .skills {
+            color: #536179;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .apply-btn {
+            display: block;
+            text-align: center;
+            margin-top: auto;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 13px;
+            border-radius: 9px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .empty {
+            background: white;
+            border-radius: 14px;
+            padding: 35px;
+            text-align: center;
+            color: #748098;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            text-align: center;
+            color: #748098;
+            padding: 30px 15px;
+        }
+
+        @media (max-width: 950px) {
+            .jobs-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            .page-heading h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="logo">Employ<span>Link</span></div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/companies">Companies</a>
+        <a href="/jobs">Explore Jobs</a>
+        <a href="/analytics">Overall Analysis</a>
+    </nav>
+</header>
+
+<main class="container">
+    <div class="page-heading">
+        <h1>Explore Opportunities</h1>
+        <p>Discover jobs and take the next step in your career.</p>
+    </div>
+
+    <section class="jobs-grid">
+        {% for job in jobs %}
+        <article class="job-card">
+            <span class="job-tag">Career Opportunity</span>
+
+            <h2>{{ job.job_role }}</h2>
+
+            <div class="company">
+                {{ job.company_name or "Company not specified" }}
+            </div>
+
+            <div class="details">
+                <div>📍 {{ job.location or "Location not specified" }}</div>
+                <div>💰 Package: {{ job.package or "Not specified" }}</div>
+            </div>
+
+            <p class="description">
+                {{ job.description or "No description provided." }}
+            </p>
+
+            <p class="skills">
+                <strong>Required skills:</strong>
+                {{ job.skills or "Not specified" }}
+            </p>
+
+            <a class="apply-btn"
+               href="{{ url_for('apply_job', job_id=job.id) }}">
+                Apply Now →
+            </a>
+        </article>
+        {% else %}
+        <div class="empty">
+            <h2>No jobs available yet</h2>
+            <p>New opportunities will appear here when companies post jobs.</p>
+        </div>
+        {% endfor %}
+    </section>
+</main>
+
+<footer>
+    EmployLink © 2026 | Connecting Talent With Opportunity
+</footer>
+</body>
+</html>

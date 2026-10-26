@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EmployLink</title>
+
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #172033;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            background: white;
+
+            padding: 20px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #172033;
+
+        }
+
+
+        .logo span {
+
+            color: #2563eb;
+
+        }
+
+
+        nav a {
+
+            text-decoration: none;
+
+            color: #172033;
+
+            margin-left: 25px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+
+        }
+
+
+        nav a:hover {
+
+            color: #2563eb;
+
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero {
+
+            padding: 80px 8%;
+
+            text-align: center;
+
+            background: #eef4ff;
+
+        }
+
+
+        .hero h1 {
+
+            font-size: 48px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .hero h1 span {
+
+            color: #2563eb;
+
+        }
+
+
+        .hero p {
+
+            font-size: 18px;
+
+            color: #64748b;
+
+            max-width: 750px;
+
+            margin: auto;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           MAIN SECTIONS
+        ========================= */
+
+        .sections {
+
+            padding: 60px 8%;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        /* =========================
+           COMMON CARD
+        ========================= */
+
+        .card {
+
+            background: white;
+
+            padding: 40px 30px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.12);
+
+        }
+
+
+        /* =========================
+           EXPLORE CARDS
+           SMALLER
+        ========================= */
+
+        .explore-card {
+
+            padding: 28px 20px;
+
+        }
+
+
+        .explore-card .icon {
+
+            font-size: 40px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .explore-card h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .explore-card p {
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           ICON
+        ========================= */
+
+        .icon {
+
+            font-size: 48px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           CARD TITLE
+        ========================= */
+
+        .card h2 {
+
+            margin-bottom: 15px;
+
+            color: #172033;
+
+        }
+
+
+        /* =========================
+           CARD DESCRIPTION
+        ========================= */
+
+        .card p {
+
+            color: #64748b;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 12px 25px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+
+        }
+
+
+        .btn:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        /* =========================
+           STUDENT LOGIN
+           80% WIDTH
+        ========================= */
+
+        .student-login-card {
+
+            grid-column: 1 / -1;
+
+            width: 80%;
+
+            justify-self: center;
+
+            padding: 40px 30px;
+
+        }
+
+
+        /* =========================
+           COMPANY LOGIN
+           80% WIDTH
+        ========================= */
+
+        .company-login-card {
+
+            grid-column: 1 / -1;
+
+            width: 80%;
+
+            justify-self: center;
+
+            padding: 40px 30px;
+
+        }
+
+
+        /* =========================
+           OVERALL ANALYSIS
+           SAME WIDTH
+        ========================= */
+
+        .analysis-card {
+
+            grid-column: 1 / -1;
+
+            width: 80%;
+
+            justify-self: center;
+
+            padding: 40px 30px;
+
+        }
+
+
+        /* =========================
+           LOGIN ICONS
+        ========================= */
+
+        .student-login-card .icon,
+        .company-login-card .icon {
+
+            font-size: 50px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        /* =========================
+           LOGIN TITLES
+        ========================= */
+
+        .student-login-card h2,
+        .company-login-card h2 {
+
+            font-size: 28px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* =========================
+           LOGIN DESCRIPTION
+        ========================= */
+
+        .student-login-card p,
+        .company-login-card p {
+
+            max-width: 750px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+        }
+
+
+        /* =========================
+           ANALYSIS ICON
+        ========================= */
+
+        .analysis-card .icon {
+
+            font-size: 55px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           ANALYSIS TITLE
+        ========================= */
+
+        .analysis-card h2 {
+
+            font-size: 28px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* =========================
+           ANALYSIS DESCRIPTION
+        ========================= */
+
+        .analysis-card p {
+
+            max-width: 800px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 25px;
+
+            background: #172033;
+
+            color: white;
+
+            margin-top: 20px;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 768px) {
+
+
+            /* NAVBAR */
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 20px;
+
+            }
+
+
+            nav {
+
+                text-align: center;
+
+            }
+
+
+            nav a {
+
+                display: inline-block;
+
+                margin: 5px 8px;
+
+            }
+
+
+            /* HERO */
+
+            .hero {
+
+                padding: 60px 5%;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 36px;
+
+            }
+
+
+            .hero p {
+
+                font-size: 16px;
+
+            }
+
+
+            /* MAIN SECTIONS */
+
+            .sections {
+
+                grid-template-columns: 1fr;
+
+                padding: 40px 5%;
+
+            }
+
+
+            /* EXPLORE CARDS */
+
+            .explore-card {
+
+                width: 100%;
+
+                padding: 30px 20px;
+
+            }
+
+
+            /* STUDENT LOGIN */
+
+            .student-login-card {
+
+                grid-column: auto;
+
+                width: 100%;
+
+                padding: 35px 20px;
+
+            }
+
+
+            /* COMPANY LOGIN */
+
+            .company-login-card {
+
+                grid-column: auto;
+
+                width: 100%;
+
+                padding: 35px 20px;
+
+            }
+
+
+            /* OVERALL ANALYSIS */
+
+            .analysis-card {
+
+                grid-column: auto;
+
+                width: 100%;
+
+                padding: 35px 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+
+        <div class="logo">
+
+            Employ<span>Link</span>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/companies">
+                Companies
+            </a>
+
+            <a href="/jobs">
+                Jobs
+            </a>
+
+            <a href="/student-login">
+                Student Login
+            </a>
+
+            <a href="/company-login">
+                Company Login
+            </a>
+
+            <a href="/analytics">
+                Analysis
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+
+    <section class="hero">
+
+
+        <h1>
+
+            Connecting
+            <span>Talent</span>
+            With
+            <span>Opportunity</span>
+
+        </h1>
+
+
+        <p>
+
+            EmployLink connects students,
+            companies and employment opportunities
+            while providing employment and
+            unemployment insights.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         MAIN SECTIONS
+    ========================= -->
+
+    <section class="sections">
+
+
+        <!-- =====================
+             EXPLORE COMPANIES
+        ====================== -->
+
+        <div class="card explore-card">
+
+
+            <div class="icon">
+
+                🏢
+
+            </div>
+
+
+            <h2>
+
+                Explore Companies
+
+            </h2>
+
+
+            <p>
+
+                Explore registered companies,
+                their locations and available
+                employment opportunities.
+
+            </p>
+
+
+            <a href="/companies"
+               class="btn">
+
+                Explore Companies
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =====================
+             EXPLORE JOBS
+        ====================== -->
+
+        <div class="card explore-card">
+
+
+            <div class="icon">
+
+                💼
+
+            </div>
+
+
+            <h2>
+
+                Explore Jobs
+
+            </h2>
+
+
+            <p>
+
+                Find the latest job opportunities
+                posted by companies and discover
+                jobs matching your skills.
+
+            </p>
+
+
+            <a href="/jobs"
+               class="btn">
+
+                Find Jobs
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =====================
+             STUDENT LOGIN
+        ====================== -->
+
+        <div class="card student-login-card">
+
+
+            <div class="icon">
+
+                🎓
+
+            </div>
+
+
+            <h2>
+
+                Student Login
+
+            </h2>
+
+
+            <p>
+
+                Students can log in to their
+                account, create their profile,
+                explore job opportunities and
+                apply for suitable jobs.
+
+            </p>
+
+
+            <a href="/student-login"
+               class="btn">
+
+                Student Login
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =====================
+             COMPANY LOGIN
+        ====================== -->
+
+        <div class="card company-login-card">
+
+
+            <div class="icon">
+
+                🔐
+
+            </div>
+
+
+            <h2>
+
+                Company Login
+
+            </h2>
+
+
+            <p>
+
+                Companies can log in to their
+                account, post new jobs and manage
+                student applications.
+
+            </p>
+
+
+            <a href="/company-login"
+               class="btn">
+
+                Company Login
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =====================
+             OVERALL ANALYSIS
+        ====================== -->
+
+        <div class="card analysis-card">
+
+
+            <div class="icon">
+
+                📊
+
+            </div>
+
+
+            <h2>
+
+                Overall Analysis
+
+            </h2>
+
+
+            <p>
+
+                View overall employment statistics,
+                unemployment rate, total students,
+                available jobs, placements and
+                employment trends.
+
+            </p>
+
+
+            <a href="/analytics"
+               class="btn">
+
+                View Overall Analysis
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © 2026 EmployLink |
+        Employment & Placement Analytics Portal
+
+    </footer>
+
+
+</body>
+
+</html>

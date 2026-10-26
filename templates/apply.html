@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmployLink | Apply for Job</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f5fb;
+            color: #17233c;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back {
+            display: inline-block;
+            color: #2563eb;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .heading {
+            margin-bottom: 24px;
+        }
+
+        .heading h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #748098;
+        }
+
+        .job-card {
+            background: #101b32;
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 22px;
+        }
+
+        .job-card h2 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .job-card p {
+            color: #d0d9e8;
+            margin-top: 8px;
+        }
+
+        .form-card {
+            background: white;
+            border: 1px solid #e3e9f3;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 8px 28px #17233c0f;
+        }
+
+        .form-card h2 {
+            margin-bottom: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            min-width: 0;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #d8dfeb;
+            border-radius: 9px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px #2563eb18;
+        }
+
+        input[type="file"] {
+            background: #f8faff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 95px;
+        }
+
+        .note {
+            color: #748098;
+            font-size: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 22px;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .message {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+
+        @media (max-width: 560px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .form-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <a href="/jobs" class="back">← Back to Jobs</a>
+
+    <div class="heading">
+        <h1>Job Application</h1>
+        <p>Complete the form below to apply for this opportunity.</p>
+    </div>
+
+    <div class="job-card">
+        <h2>{{ job.job_role }}</h2>
+        <p>🏢 {{ job.company_name or "Company" }}</p>
+        <p>📍 {{ job.location or "Location not specified" }}</p>
+        <p>💰 Package: {{ job.package or "Not specified" }}</p>
+    </div>
+
+    <div class="form-card">
+        <h2>Your Details</h2>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form action="{{ url_for('apply_job', job_id=job.id) }}"
+              method="POST" enctype="multipart/form-data">
+
+            <div class="form-grid">
+                <div class="field full">
+                    <label for="fullname">Full Name *</label>
+                    <input type="text" id="fullname" name="fullname"
+                           maxlength="150" required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email"
+                           maxlength="255" required>
+                </div>
+
+                <div class="field">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone"
+                           maxlength="20" required>
+                </div>
+
+                <div class="field">
+                    <label for="experience">Experience</label>
+                    <input type="text" id="experience" name="experience"
+                           maxlength="100" placeholder="Fresher or 1 year">
+                </div>
+
+                <div class="field">
+                    <label for="passing_year">Passing Year</label>
+                    <input type="number" id="passing_year" name="passing_year"
+                           min="1950" max="2100" placeholder="2027">
+                </div>
+
+                <div class="field full">
+                    <label for="skills">Your Skills *</label>
+                    <textarea id="skills" name="skills"
+                              maxlength="5000"
+                              placeholder="Python, SQL, Excel..."
+                              required></textarea>
+                </div>
+
+                <div class="field full">
+                    <label for="resume">Upload Resume (PDF) *</label>
+                    <input type="file" id="resume" name="resume"
+                           accept=".pdf,application/pdf" required>
+                    <span class="note">PDF only, maximum 5 MB.</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Submit Application →
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

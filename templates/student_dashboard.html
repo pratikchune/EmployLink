@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - EmployLink</title>
+
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f8fafc;
+
+            color: #172033;
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            background: white;
+
+            padding: 20px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #172033;
+
+        }
+
+
+        .logo span {
+
+            color: #2563eb;
+
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav a {
+
+            text-decoration: none;
+
+            color: #172033;
+
+            margin-left: 25px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+
+        }
+
+
+        nav a:hover {
+
+            color: #2563eb;
+
+        }
+
+
+        .logout {
+
+            color: #dc2626 !important;
+
+        }
+
+
+        .logout:hover {
+
+            color: #b91c1c !important;
+
+        }
+
+
+        /* =========================
+           DASHBOARD HEADER
+        ========================= */
+
+        .dashboard-header {
+
+            padding: 50px 8% 30px;
+
+        }
+
+
+        .dashboard-header h1 {
+
+            font-size: 36px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .dashboard-header h1 span {
+
+            color: #2563eb;
+
+        }
+
+
+        .dashboard-header p {
+
+            color: #64748b;
+
+            font-size: 17px;
+
+        }
+
+
+        /* =========================
+           DASHBOARD CONTAINER
+        ========================= */
+
+        .dashboard {
+
+            padding: 20px 8% 60px;
+
+        }
+
+
+        /* =========================
+           TOP CARDS
+        ========================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.07);
+
+            transition: 0.3s;
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        /* =========================
+           CARD ICON
+        ========================= */
+
+        .card-icon {
+
+            font-size: 40px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* =========================
+           CARD TITLE
+        ========================= */
+
+        .card h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =========================
+           CARD DESCRIPTION
+        ========================= */
+
+        .card p {
+
+            color: #64748b;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 10px 20px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+
+        }
+
+
+        .btn:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        /* =========================
+           FULL WIDTH CARD
+        ========================= */
+
+        .full-card {
+
+            width: 100%;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================
+           APPLICATION TABLE
+        ========================= */
+
+        .application-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 20px;
+
+        }
+
+
+        .application-table th {
+
+            background: #eef4ff;
+
+            color: #172033;
+
+            padding: 14px;
+
+            text-align: left;
+
+        }
+
+
+        .application-table td {
+
+            padding: 14px;
+
+            border-bottom: 1px solid #e2e8f0;
+
+        }
+
+
+        .application-table tr:hover {
+
+            background: #f8fafc;
+
+        }
+
+
+        /* =========================
+           STATUS BADGES
+        ========================= */
+
+        .status {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+        .applied {
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+        }
+
+
+        .shortlisted {
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+        }
+
+
+        .rejected {
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+        }
+
+
+        .selected {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+
+        /* =========================
+           EMPLOYMENT STATUS
+        ========================= */
+
+        .employment-box {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 20px;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .employment-label {
+
+            font-size: 18px;
+
+            font-weight: 600;
+
+        }
+
+
+        .employment-status {
+
+            padding: 10px 20px;
+
+            border-radius: 25px;
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           PLACEMENT STATUS
+        ========================= */
+
+        .placement-box {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .placement-item {
+
+            background: #f8fafc;
+
+            padding: 20px;
+
+            text-align: center;
+
+            border-radius: 10px;
+
+        }
+
+
+        .placement-item h3 {
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+
+            color: #2563eb;
+
+        }
+
+
+        .placement-item p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           PROFILE COMPLETION
+        ========================= */
+
+        .progress-container {
+
+            margin-top: 15px;
+
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 10px;
+
+            background: #e2e8f0;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+        }
+
+
+        .progress {
+
+            width: 80%;
+
+            height: 100%;
+
+            background: #2563eb;
+
+        }
+
+
+        .progress-text {
+
+            margin-top: 8px;
+
+            font-size: 14px;
+
+            color: #64748b;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 25px;
+
+            background: #172033;
+
+            color: white;
+
+            margin-top: 20px;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 768px) {
+
+
+            /* NAVBAR */
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 20px;
+
+            }
+
+
+            nav {
+
+                text-align: center;
+
+            }
+
+
+            nav a {
+
+                display: inline-block;
+
+                margin: 5px 8px;
+
+            }
+
+
+            /* HEADER */
+
+            .dashboard-header {
+
+                padding: 40px 5% 20px;
+
+            }
+
+
+            .dashboard-header h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            /* DASHBOARD */
+
+            .dashboard {
+
+                padding: 20px 5% 40px;
+
+            }
+
+
+            /* CARDS */
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            /* TABLE */
+
+            .application-table {
+
+                display: block;
+
+                overflow-x: auto;
+
+                white-space: nowrap;
+
+            }
+
+
+            /* PLACEMENT */
+
+            .placement-box {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            /* EMPLOYMENT */
+
+            .employment-box {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+
+        <div class="logo">
+
+            Employ<span>Link</span>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/student-dashboard">
+                Dashboard
+            </a>
+
+            <a href="/student-profile">
+                My Profile
+            </a>
+
+            <a href="/jobs">
+                Jobs
+            </a>
+
+            <a href="/applications">
+                Applications
+            </a>
+
+            <a href="/"
+               class="logout">
+                Logout
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =========================
+         DASHBOARD HEADER
+    ========================= -->
+
+    <section class="dashboard-header">
+
+
+        <h1>
+
+            Welcome,
+            <span>Student</span> 👋
+
+        </h1>
+
+
+        <p>
+
+            Manage your profile, applications
+            and placement information from
+            your EmployLink dashboard.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
+
+    <main class="dashboard">
+
+
+
+        <!-- =====================
+             TOP CARDS
+        ====================== -->
+
+        <div class="cards">
+
+
+            <!-- PROFILE -->
+
+            <div class="card">
+
+
+                <div class="card-icon">
+
+                    👤
+
+                </div>
+
+
+                <h2>
+
+                    My Profile
+
+                </h2>
+
+
+                <p>
+
+                    View and update your personal,
+                    educational and professional
+                    information.
+
+                </p>
+
+
+                <a href="/student-profile"
+                   class="btn">
+
+                    View Profile
+
+                </a>
+
+
+                <div class="progress-container">
+
+                    <div class="progress-bar">
+
+                        <div class="progress"></div>
+
+                    </div>
+
+
+                    <div class="progress-text">
+
+                        Profile Completion: 80%
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- EDUCATION & SKILLS -->
+
+            <div class="card">
+
+
+                <div class="card-icon">
+
+                    🎓
+
+                </div>
+
+
+                <h2>
+
+                    Education & Skills
+
+                </h2>
+
+
+                <p>
+
+                    Manage your education,
+                    technical skills, certifications
+                    and experience.
+
+                </p>
+
+
+                <a href="/student-profile"
+                   class="btn">
+
+                    Manage Details
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================
+             MY APPLICATIONS
+        ====================== -->
+
+        <div class="card full-card">
+
+
+            <div class="card-icon">
+
+                📄
+
+            </div>
+
+
+            <h2>
+
+                My Applications
+
+            </h2>
+
+
+            <p>
+
+                Track the status of jobs you
+                have applied for.
+
+            </p>
+
+
+            <table class="application-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Job Position
+                        </th>
+
+                        <th>
+                            Company
+                        </th>
+
+                        <th>
+                            Application Date
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+                            Python Developer
+                        </td>
+
+                        <td>
+                            ABC Technologies
+                        </td>
+
+                        <td>
+                            15 Aug 2026
+                        </td>
+
+                        <td>
+
+                            <span class="status applied">
+
+                                Applied
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Data Analyst
+                        </td>
+
+                        <td>
+                            XYZ Solutions
+                        </td>
+
+                        <td>
+                            12 Aug 2026
+                        </td>
+
+                        <td>
+
+                            <span class="status shortlisted">
+
+                                Shortlisted
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Web Developer
+                        </td>
+
+                        <td>
+                            Tech Solutions
+                        </td>
+
+                        <td>
+                            10 Aug 2026
+                        </td>
+
+                        <td>
+
+                            <span class="status rejected">
+
+                                Rejected
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+
+        <!-- =====================
+             PLACEMENT STATUS
+        ====================== -->
+
+        <div class="card full-card">
+
+
+            <div class="card-icon">
+
+                ✅
+
+            </div>
+
+
+            <h2>
+
+                Placement Status
+
+            </h2>
+
+
+            <p>
+
+                Overview of your current
+                placement progress.
+
+            </p>
+
+
+            <div class="placement-box">
+
+
+                <div class="placement-item">
+
+                    <h3>
+                        5
+                    </h3>
+
+                    <p>
+                        Applications
+                    </p>
+
+                </div>
+
+
+                <div class="placement-item">
+
+                    <h3>
+                        2
+                    </h3>
+
+                    <p>
+                        Shortlisted
+                    </p>
+
+                </div>
+
+
+                <div class="placement-item">
+
+                    <h3>
+                        0
+                    </h3>
+
+                    <p>
+                        Selected
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================
+             EMPLOYMENT STATUS
+        ====================== -->
+
+        <div class="card full-card">
+
+
+            <div class="card-icon">
+
+                📊
+
+            </div>
+
+
+            <h2>
+
+                Employment Status
+
+            </h2>
+
+
+            <p>
+
+                Your current employment status
+                based on your placement information.
+
+            </p>
+
+
+            <div class="employment-box">
+
+
+                <div class="employment-label">
+
+                    Current Employment Status
+
+                </div>
+
+
+                <div class="employment-status">
+
+                    Unemployed
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © 2026 EmployLink |
+        Employment & Placement Analytics Portal
+
+    </footer>
+    
+
+</body>
+
+</html>

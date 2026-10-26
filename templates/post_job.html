@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job | EmployLink</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            background: #f1f5f9;
+            color: #172554;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px #0f172a12;
+        }
+
+        h1 {
+            color: #1d4ed8;
+            margin-top: 0;
+        }
+
+        .subtitle {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px #2563eb18;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 13px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            margin-left: 8px;
+            background: #475569;
+        }
+
+        .back:hover {
+            background: #334155;
+        }
+
+        .message {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 22px;
+            }
+
+            .back {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>📝 Post a New Job</h1>
+        <p class="subtitle">
+            Enter the vacancy details to publish a job on EmployLink.
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="message {% if category == 'success' %}success{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('post_job') }}">
+
+            <label for="job_role">Job Role *</label>
+            <input
+                type="text"
+                id="job_role"
+                name="job_role"
+                placeholder="e.g. Data Analyst"
+                required
+            >
+
+            <label for="description">Job Description *</label>
+            <textarea
+                id="description"
+                name="description"
+                placeholder="Describe the responsibilities and requirements..."
+                required
+            ></textarea>
+
+            <label for="skills">Required Skills</label>
+            <input
+                type="text"
+                id="skills"
+                name="skills"
+                placeholder="e.g. Python, SQL, Power BI"
+            >
+
+            <label for="package">Salary / Package</label>
+            <input
+                type="text"
+                id="package"
+                name="package"
+                placeholder="e.g. 4–6 LPA"
+            >
+
+            <label for="location">Job Location</label>
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="e.g. Pune, Maharashtra"
+            >
+
+            <button type="submit" class="btn">
+                Publish Job 🚀
+            </button>
+
+            <a href="{{ url_for('company_dashboard') }}" class="btn back">
+                Cancel
+            </a>
+
+        </form>
+    </main>
+</body>
+</html>

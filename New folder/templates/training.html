@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Training & Courses - SkillTrack</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+
+            height: 70px;
+
+            background: #123c69;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 40px;
+
+            color: white;
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+        }
+
+
+        .logo span {
+            color: #5eead4;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            align-items: center;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+        }
+
+
+        .nav-links a:hover {
+            color: #5eead4;
+        }
+
+
+        .logout {
+
+            background: #ef4444;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+
+            width: 92%;
+
+            max-width: 1200px;
+
+            margin: 35px auto;
+        }
+
+
+        .header {
+
+            margin-bottom: 30px;
+        }
+
+
+        .header h1 {
+
+            color: #123c69;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .header p {
+
+            color: #64748b;
+
+            font-size: 16px;
+        }
+
+
+        /* COURSE GRID */
+
+        .course-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* COURSE CARD */
+
+        .course-card {
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 23px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+
+            transition: 0.2s;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .course-card:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,0.12);
+        }
+
+
+        .course-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            background: #eff6ff;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 27px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .course-card h2 {
+
+            color: #123c69;
+
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .description {
+
+            color: #64748b;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+            min-height: 65px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .provider {
+
+            font-weight: bold;
+
+            color: #374151;
+
+            margin-bottom: 12px;
+        }
+
+
+        .details {
+
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+        }
+
+
+        .badge {
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            padding: 6px 9px;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+        }
+
+
+        .verified {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .btn {
+
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            padding: 11px;
+
+            border-radius: 7px;
+
+            background: #123c69;
+
+            color: white;
+
+            font-weight: bold;
+
+            margin-top: auto;
+        }
+
+
+        .btn:hover {
+
+            background: #0f3155;
+        }
+
+
+        /* EMPTY */
+
+        .empty {
+
+            background: white;
+
+            padding: 60px;
+
+            text-align: center;
+
+            border-radius: 12px;
+        }
+
+
+        .empty h2 {
+
+            color: #123c69;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty p {
+
+            color: #64748b;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media(max-width: 1000px) {
+
+            .course-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 650px) {
+
+            .course-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+
+                padding: 0 20px;
+            }
+
+            .nav-links a:not(.logout) {
+
+                display: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        Skill<span>Track</span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('profile') }}">
+            Profile
+        </a>
+
+        <a href="{{ url_for('skills') }}">
+            My Skills
+        </a>
+
+        <a href="{{ url_for('training') }}">
+            Training
+        </a>
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>
+            Training & Courses
+        </h1>
+
+        <p>
+            Discover training programs and build
+            job-ready skills.
+        </p>
+
+    </div>
+
+
+
+    {% if courses %}
+
+
+        <div class="course-grid">
+
+
+            {% for course in courses %}
+
+
+                <div class="course-card">
+
+
+                    <div class="course-icon">
+
+                        🎓
+
+                    </div>
+
+
+                    <h2>
+
+                        {{ course.course_name }}
+
+                    </h2>
+
+
+                    <p class="description">
+
+                        {{ course.course_description }}
+
+                    </p>
+
+
+                    <p class="provider">
+
+                        {{ course.provider_name }}
+
+                        {% if course.verification_status == "verified" %}
+
+                            <span
+                                style="color:#16a34a;"
+                            >
+                                ✓
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <div class="details">
+
+
+                        <span class="badge">
+
+                            ⏱
+                            {{ course.duration_months }}
+                            Months
+
+                        </span>
+
+
+                        <span class="badge">
+
+                            {{ course.training_mode }}
+
+                        </span>
+
+
+                        {% if course.certification_available %}
+
+                            <span class="badge verified">
+
+                                Certificate
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for(
+                            'course_details',
+                            course_id=course.course_id
+                        ) }}"
+                        class="btn"
+                    >
+
+                        View Details
+
+                    </a>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="empty">
+
+            <h2>
+                No Courses Available
+            </h2>
+
+            <p>
+                Training providers have not published
+                any courses yet.
+            </p>
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+</body>
+
+</html>

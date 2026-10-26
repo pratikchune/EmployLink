@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - SkillTrack</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* =================================================
+           NAVBAR
+        ================================================= */
+
+        .navbar {
+            height: 70px;
+            background: #123c69;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 40px;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #5eead4;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-right a:hover {
+            color: #5eead4;
+        }
+
+        .logout {
+            background: #ef4444;
+            padding: 9px 18px;
+            border-radius: 6px;
+        }
+
+        .logout:hover {
+            color: white !important;
+            background: #dc2626;
+        }
+
+
+        /* =================================================
+           PAGE
+        ================================================= */
+
+        .page-container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+
+        /* =================================================
+           HEADER
+        ================================================= */
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            color: #123c69;
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+            color: #64748b;
+        }
+
+
+        /* =================================================
+           SUCCESS / ERROR
+        ================================================= */
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+
+            padding: 14px 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            border-left: 5px solid #22c55e;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+
+            padding: 14px 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            border-left: 5px solid #ef4444;
+        }
+
+
+        /* =================================================
+           PROFILE CARD
+        ================================================= */
+
+        .profile-card {
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 30px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+
+        /* =================================================
+           PROFILE TOP
+        ================================================= */
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+
+            gap: 20px;
+
+            padding-bottom: 25px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            margin-bottom: 25px;
+        }
+
+        .profile-icon {
+
+            width: 80px;
+            height: 80px;
+
+            border-radius: 50%;
+
+            background: #123c69;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .profile-info h2 {
+            color: #123c69;
+            margin-bottom: 6px;
+        }
+
+        .profile-info p {
+            color: #64748b;
+        }
+
+
+        /* =================================================
+           SKILLTRACK ID
+        ================================================= */
+
+        .skilltrack-id {
+
+            margin-left: auto;
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            padding: 12px 18px;
+
+            border-radius: 8px;
+
+            text-align: center;
+        }
+
+        .skilltrack-id small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .skilltrack-id strong {
+            color: #123c69;
+            font-size: 16px;
+        }
+
+
+        /* =================================================
+           FORM
+        ================================================= */
+
+        .form-title {
+            font-size: 20px;
+            color: #123c69;
+
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+
+            margin-bottom: 7px;
+
+            color: #374151;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37,99,235,0.1);
+        }
+
+        textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+
+        /* =================================================
+           READ ONLY
+        ================================================= */
+
+        .readonly {
+
+            background: #f1f5f9;
+
+            color: #64748b;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =================================================
+           BUTTON
+        ================================================= */
+
+        .button-area {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+        }
+
+        .btn {
+
+            padding: 12px 25px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+        .btn-save {
+
+            background: #123c69;
+
+            color: white;
+        }
+
+        .btn-save:hover {
+
+            background: #0f3155;
+        }
+
+        .btn-dashboard {
+
+            background: #e5e7eb;
+
+            color: #374151;
+
+            text-decoration: none;
+
+            display: inline-flex;
+
+            align-items: center;
+        }
+
+        .btn-dashboard:hover {
+
+            background: #d1d5db;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+
+                padding: 0 20px;
+            }
+
+            .nav-right a:not(.logout) {
+
+                display: none;
+            }
+
+            .page-container {
+
+                width: 94%;
+            }
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+
+                grid-column: auto;
+            }
+
+            .profile-top {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .skilltrack-id {
+
+                margin-left: 0;
+
+                width: 100%;
+            }
+
+            .button-area {
+
+                flex-direction: column;
+            }
+
+            .btn {
+
+                width: 100%;
+
+                text-align: center;
+
+                justify-content: center;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     NAVBAR
+======================================================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Skill<span>Track</span>
+    </div>
+
+
+    <div class="nav-right">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('profile') }}">
+            My Profile
+        </a>
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ======================================================
+     MAIN
+======================================================= -->
+
+<div class="page-container">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <h1>
+            My Profile
+        </h1>
+
+        <p>
+            Manage your personal and career information.
+        </p>
+
+    </div>
+
+
+    <!-- ==================================================
+         SUCCESS MESSAGE
+    =================================================== -->
+
+    {% if updated == "success" %}
+
+        <div class="success">
+
+            ✓ Your profile has been updated successfully.
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         ERROR MESSAGE
+    =================================================== -->
+
+    {% if error %}
+
+        <div class="error">
+
+            {{ error }}
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         PROFILE CARD
+    =================================================== -->
+
+    <div class="profile-card">
+
+
+        <!-- PROFILE HEADER -->
+
+        <div class="profile-top">
+
+            <div class="profile-icon">
+
+                {{ trainee.full_name[0] | upper }}
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <h2>
+                    {{ trainee.full_name }}
+                </h2>
+
+                <p>
+                    {{ trainee.email }}
+                </p>
+
+            </div>
+
+
+            <div class="skilltrack-id">
+
+                <small>
+                    SkillTrack ID
+                </small>
+
+                <strong>
+                    {{ trainee.skilltrack_id }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             FORM
+        =================================================== -->
+
+        <form
+            method="POST"
+            action="{{ url_for('profile') }}"
+        >
+
+
+            <div class="form-title">
+                Personal & Career Information
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        name="full_name"
+                        value="{{ trainee.full_name or '' }}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        value="{{ trainee.email }}"
+                        class="readonly"
+                        readonly
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Mobile Number *
+                    </label>
+
+                    <input
+                        type="text"
+                        name="phone"
+                        value="{{ trainee.phone or '' }}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DATE OF BIRTH -->
+
+                <div class="form-group">
+
+                    <label>
+                        Date of Birth
+                    </label>
+
+                    <input
+                        type="date"
+                        name="date_of_birth"
+                        value="{{ trainee.date_of_birth or '' }}"
+                    >
+
+                </div>
+
+
+                <!-- GENDER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Gender
+                    </label>
+
+                    <select name="gender">
+
+                        <option value="">
+                            Select Gender
+                        </option>
+
+                        <option
+                            value="Male"
+                            {% if trainee.gender == "Male" %}
+                            selected
+                            {% endif %}
+                        >
+                            Male
+                        </option>
+
+                        <option
+                            value="Female"
+                            {% if trainee.gender == "Female" %}
+                            selected
+                            {% endif %}
+                        >
+                            Female
+                        </option>
+
+                        <option
+                            value="Other"
+                            {% if trainee.gender == "Other" %}
+                            selected
+                            {% endif %}
+                        >
+                            Other
+                        </option>
+
+                        <option
+                            value="Prefer not to say"
+                            {% if trainee.gender == "Prefer not to say" %}
+                            selected
+                            {% endif %}
+                        >
+                            Prefer not to say
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- EDUCATION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Education Level
+                    </label>
+
+                    <select name="education_level">
+
+                        <option value="">
+                            Select Education
+                        </option>
+
+                        <option
+                            value="10th"
+                            {% if trainee.education_level == "10th" %}
+                            selected
+                            {% endif %}
+                        >
+                            10th
+                        </option>
+
+                        <option
+                            value="12th"
+                            {% if trainee.education_level == "12th" %}
+                            selected
+                            {% endif %}
+                        >
+                            12th
+                        </option>
+
+                        <option
+                            value="Diploma"
+                            {% if trainee.education_level == "Diploma" %}
+                            selected
+                            {% endif %}
+                        >
+                            Diploma
+                        </option>
+
+                        <option
+                            value="Graduate"
+                            {% if trainee.education_level == "Graduate" %}
+                            selected
+                            {% endif %}
+                        >
+                            Graduate
+                        </option>
+
+                        <option
+                            value="Postgraduate"
+                            {% if trainee.education_level == "Postgraduate" %}
+                            selected
+                            {% endif %}
+                        >
+                            Postgraduate
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- QUALIFICATION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Qualification
+                    </label>
+
+                    <input
+                        type="text"
+                        name="qualification"
+                        placeholder="Example: MCA, BCA, Diploma in IT"
+                        value="{{ trainee.qualification or '' }}"
+                    >
+
+                </div>
+
+
+                <!-- DISTRICT -->
+
+                <div class="form-group">
+
+                    <label>
+                        District
+                    </label>
+
+                    <select name="district_id">
+
+                        <option value="">
+                            Select District
+                        </option>
+
+                        {% for district in districts %}
+
+                            <option
+                                value="{{ district.district_id }}"
+
+                                {% if trainee.district_id == district.district_id %}
+                                selected
+                                {% endif %}
+                            >
+
+                                {{ district.district_name }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group full">
+
+                    <label>
+                        Address
+                    </label>
+
+                    <textarea
+                        name="address"
+                        placeholder="Enter your current address"
+                    >{{ trainee.address or '' }}</textarea>
+
+                </div>
+
+
+                <!-- CAREER GOAL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Career Goal
+                    </label>
+
+                    <input
+                        type="text"
+                        name="career_goal"
+                        placeholder="Example: Data Analyst"
+                        value="{{ trainee.career_goal or '' }}"
+                    >
+
+                </div>
+
+
+                <!-- EXPERIENCE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Experience (Years)
+                    </label>
+
+                    <input
+                        type="number"
+                        name="experience_years"
+                        min="0"
+                        step="0.1"
+                        value="{{ trainee.experience_years or 0 }}"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="button-area">
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="btn btn-dashboard"
+                >
+                    Back to Dashboard
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-save"
+                >
+                    Save Profile
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

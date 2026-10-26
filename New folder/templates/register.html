@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register | SkillTrack Maharashtra</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f2a44,
+                    #164e63
+                );
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .register-container {
+
+            width: 100%;
+
+            max-width: 520px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+
+            text-align: center;
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            color: #0f2a44;
+
+            margin-bottom: 8px;
+        }
+
+
+        .logo span {
+
+            color: #0284c7;
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+
+            font-size: 15px;
+        }
+
+
+        /* ================= ERROR ================= */
+
+        .error {
+
+            background: #fee2e2;
+
+            border: 1px solid #fecaca;
+
+            color: #b91c1c;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #334155;
+
+            font-size: 14px;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            background: #fff;
+
+            transition: 0.2s;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #0284c7;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(2, 132, 199, 0.12);
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .register-btn {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            background: #0284c7;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .register-btn:hover {
+
+            background: #0369a1;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ================= LOGIN LINK ================= */
+
+        .login-link {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        .login-link a {
+
+            color: #0284c7;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        .login-link a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* ================= HOME LINK ================= */
+
+        .home-link {
+
+            text-align: center;
+
+            margin-top: 15px;
+        }
+
+
+        .home-link a {
+
+            color: #64748b;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+
+        .home-link a:hover {
+
+            color: #0284c7;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .register-container {
+                padding: 28px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="register-container">
+
+
+    <div class="logo">
+
+        Skill<span>Track</span>
+
+    </div>
+
+
+    <p class="subtitle">
+
+        Create your SkillTrack account
+
+    </p>
+
+
+    {% if error %}
+
+        <div class="error">
+
+            {{ error }}
+
+        </div>
+
+    {% endif %}
+
+
+    <form method="POST">
+
+
+        <!-- FULL NAME -->
+
+        <div class="form-group">
+
+            <label for="full_name">
+
+                Full Name
+
+            </label>
+
+            <input
+                type="text"
+                id="full_name"
+                name="full_name"
+                placeholder="Enter your full name"
+                required
+            >
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+
+                Email Address
+
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+            >
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label for="phone">
+
+                Mobile Number
+
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter 10-digit mobile number"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required
+            >
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+
+                Password
+
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Minimum 6 characters"
+                minlength="6"
+                required
+            >
+
+        </div>
+
+
+        <!-- ROLE -->
+
+        <div class="form-group">
+
+            <label for="role">
+
+                Register As
+
+            </label>
+
+            <select
+                id="role"
+                name="role"
+                required
+            >
+
+                <option value="">
+
+                    Select account type
+
+                </option>
+
+                <option value="trainee">
+
+                    Trainee
+
+                </option>
+
+                <option value="provider">
+
+                    Training Provider
+
+                </option>
+
+                <option value="employer">
+
+                    Employer
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <button
+            type="submit"
+            class="register-btn"
+        >
+
+            Create Account
+
+        </button>
+
+
+    </form>
+
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="/login">
+
+            Login
+
+        </a>
+
+    </div>
+
+
+    <div class="home-link">
+
+        <a href="/">
+
+            ← Back to Home
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

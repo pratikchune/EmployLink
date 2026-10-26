@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Course Details | SkillTrack Maharashtra
+    </title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
+        body {
+
+            background: #f4f7fb;
+
+            color: #1f2937;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            background: #123b6d;
+
+            color: white;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.12);
+
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+        .logo span {
+
+            color: #8ec5ff;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 500;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #bcdcff;
+
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .container {
+
+            width: 86%;
+
+            max-width: 1150px;
+
+            margin: 40px auto 70px;
+
+        }
+
+
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
+
+        .back-button {
+
+            display: inline-block;
+
+            margin-bottom: 25px;
+
+            text-decoration: none;
+
+            color: #123b6d;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+        }
+
+
+        .back-button:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =====================================================
+           COURSE HEADER
+        ===================================================== */
+
+        .course-header {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+            margin-bottom: 25px;
+
+            border-left: 6px solid #123b6d;
+
+        }
+
+
+        .course-header h1 {
+
+            color: #123b6d;
+
+            font-size: 32px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .provider-name {
+
+            color: #6b7280;
+
+            font-size: 16px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .completed-badge {
+
+            display: inline-block;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            padding: 9px 18px;
+
+            border-radius: 25px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =====================================================
+           SECTION
+        ===================================================== */
+
+        .section {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+
+        }
+
+
+        .section-title {
+
+            color: #123b6d;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 12px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+        }
+
+
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
+
+        .description {
+
+            color: #4b5563;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =====================================================
+           INFORMATION GRID
+        ===================================================== */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .info-card {
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            padding: 20px;
+
+            border-radius: 11px;
+
+        }
+
+
+        .info-label {
+
+            display: block;
+
+            color: #6b7280;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .info-value {
+
+            display: block;
+
+            color: #111827;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =====================================================
+           PERFORMANCE
+        ===================================================== */
+
+        .performance-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .performance-card {
+
+            background: #f8fafc;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            border: 1px solid #e5e7eb;
+
+        }
+
+
+        .performance-number {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #123b6d;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .performance-label {
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+
+        .skills-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+        }
+
+
+        .skill-badge {
+
+            background: #e0ecff;
+
+            color: #123b6d;
+
+            padding: 10px 17px;
+
+            border-radius: 25px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            border: 1px solid #c7ddff;
+
+        }
+
+
+        .skill-category {
+
+            display: block;
+
+            font-size: 11px;
+
+            color: #6b7280;
+
+            margin-top: 3px;
+
+            font-weight: normal;
+
+        }
+
+
+        /* =====================================================
+           PROVIDER
+        ===================================================== */
+
+        .provider-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        /* =====================================================
+           CERTIFICATE
+        ===================================================== */
+
+        .certificate-box {
+
+            background: #f8fbff;
+
+            border: 2px solid #dbeafe;
+
+            border-radius: 14px;
+
+            padding: 28px;
+
+        }
+
+
+        .certificate-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .certificate-number {
+
+            font-size: 20px;
+
+            color: #123b6d;
+
+            font-weight: bold;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .certificate-row {
+
+            margin: 10px 0;
+
+            color: #4b5563;
+
+        }
+
+
+        .certificate-row strong {
+
+            color: #111827;
+
+        }
+
+
+        .valid-status {
+
+            display: inline-block;
+
+            margin-top: 10px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .no-certificate {
+
+            color: #6b7280;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .dashboard-button {
+
+            display: inline-block;
+
+            background: #123b6d;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 22px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-top: 20px;
+
+        }
+
+
+        .dashboard-button:hover {
+
+            background: #0d2f57;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+
+            text-align: center;
+
+            color: #6b7280;
+
+            font-size: 13px;
+
+            margin-top: 40px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 850px) {
+
+            .info-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .performance-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .provider-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .navbar {
+
+                padding: 16px 5%;
+
+            }
+
+
+            .nav-links {
+
+                gap: 12px;
+
+            }
+
+
+            .nav-links a {
+
+                font-size: 13px;
+
+            }
+
+
+            .container {
+
+                width: 92%;
+
+                margin-top: 25px;
+
+            }
+
+
+            .course-header {
+
+                padding: 25px;
+
+            }
+
+
+            .course-header h1 {
+
+                font-size: 25px;
+
+            }
+
+
+            .section {
+
+                padding: 22px;
+
+            }
+
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .performance-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .provider-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<div class="navbar">
+
+
+    <div class="logo">
+
+        Skill<span>Track</span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('my_trainings') }}">
+            My Trainings
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<div class="container">
+
+
+    <!-- BACK -->
+
+    <a
+        href="{{ url_for('my_trainings') }}"
+        class="back-button">
+
+        ← Back to My Trainings
+
+    </a>
+
+
+
+    <!-- =====================================================
+         COURSE HEADER
+    ====================================================== -->
+
+    <div class="course-header">
+
+
+        <h1>
+
+            {{ training.course_name }}
+
+        </h1>
+
+
+        <div class="provider-name">
+
+            Training Provider:
+
+            <strong>
+
+                {{ training.provider_name }}
+
+            </strong>
+
+        </div>
+
+
+        <span class="completed-badge">
+
+            ✓ TRAINING COMPLETED
+
+        </span>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ABOUT COURSE
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <h2 class="section-title">
+
+            About This Training
+
+        </h2>
+
+
+        <p class="description">
+
+            {% if training.course_description %}
+
+                {{ training.course_description }}
+
+            {% else %}
+
+                No course description has been provided.
+
+            {% endif %}
+
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         COURSE INFORMATION
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <h2 class="section-title">
+
+            Course Information
+
+        </h2>
+
+
+        <div class="info-grid">
+
+
+            <!-- Duration -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+                    Duration
+                </span>
+
+                <span class="info-value">
+
+                    {% if training.duration_months %}
+
+                        {{ training.duration_months }}
+                        Months
+
+                    {% else %}
+
+                        Not specified
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <!-- Training Mode -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+                    Training Mode
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.training_mode }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Eligibility -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+                    Eligibility
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.eligibility
+                       or
+                       'Not specified' }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Enrollment Date -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+                    Enrollment Date
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.enrollment_date
+                       or
+                       'Not available' }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Start Date -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+                    Start Date
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.start_date
+                       or
+                       'Not available' }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Completion Date -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+                    Completion Date
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.completion_date
+                       or
+                       'Not available' }}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PERFORMANCE
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <h2 class="section-title">
+
+            Training Performance
+
+        </h2>
+
+
+        <div class="performance-grid">
+
+
+            <!-- Attendance -->
+
+            <div class="performance-card">
+
+                <div class="performance-number">
+
+                    {{ training.attendance_percentage or 0 }}%
+
+                </div>
+
+                <div class="performance-label">
+
+                    Attendance
+
+                </div>
+
+            </div>
+
+
+            <!-- Assessment -->
+
+            <div class="performance-card">
+
+                <div class="performance-number">
+
+                    {% if training.assessment_score is not none %}
+
+                        {{ training.assessment_score }}%
+
+                    {% else %}
+
+                        N/A
+
+                    {% endif %}
+
+                </div>
+
+                <div class="performance-label">
+
+                    Assessment Score
+
+                </div>
+
+            </div>
+
+
+            <!-- Status -->
+
+            <div class="performance-card">
+
+                <div class="performance-number">
+
+                    ✓
+
+                </div>
+
+                <div class="performance-label">
+
+                    Completed
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SKILLS
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <h2 class="section-title">
+
+            Skills Gained
+
+        </h2>
+
+
+        {% if skills %}
+
+
+            <div class="skills-container">
+
+
+                {% for skill in skills %}
+
+
+                    <div class="skill-badge">
+
+                        {{ skill.skill_name }}
+
+
+                        {% if skill.skill_category %}
+
+                            <span class="skill-category">
+
+                                {{ skill.skill_category }}
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <p class="no-certificate">
+
+                No skills have been added to this course yet.
+
+            </p>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TRAINING PROVIDER
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <h2 class="section-title">
+
+            Training Provider
+
+        </h2>
+
+
+        <div class="provider-grid">
+
+
+            <!-- Provider -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+
+                    Provider Name
+
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.provider_name }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Address -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+
+                    Address
+
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.provider_address
+                       or
+                       'Not available' }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Contact -->
+
+            <div class="info-card">
+
+                <span class="info-label">
+
+                    Contact Person
+
+                </span>
+
+                <span class="info-value">
+
+                    {{ training.contact_person
+                       or
+                       'Not available' }}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CERTIFICATE
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <h2 class="section-title">
+
+            Certificate
+
+        </h2>
+
+
+        {% if training.certificate_id %}
+
+
+            <div class="certificate-box">
+
+
+                <div class="certificate-icon">
+
+                    🏆
+
+                </div>
+
+
+                <div class="certificate-number">
+
+                    {{ training.certificate_number }}
+
+                </div>
+
+
+                <div class="certificate-row">
+
+                    <strong>
+                        Issue Date:
+                    </strong>
+
+                    {{ training.issue_date }}
+
+                </div>
+
+
+                <div class="certificate-row">
+
+                    <strong>
+                        Verification Code:
+                    </strong>
+
+                    {{ training.verification_code
+                       or
+                       'Not available' }}
+
+                </div>
+
+
+                <div class="certificate-row">
+
+                    <strong>
+                        Certificate Status:
+                    </strong>
+
+                    {{ training.certificate_status }}
+
+                </div>
+
+
+                {% if training.certificate_status == 'valid' %}
+
+                    <span class="valid-status">
+
+                        ✓ Certificate Valid
+
+                    </span>
+
+                {% endif %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <p class="no-certificate">
+
+                A certificate has not been uploaded
+                or issued for this training yet.
+
+            </p>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BACK TO DASHBOARD
+    ====================================================== -->
+
+    <a
+        href="{{ url_for('dashboard') }}"
+        class="dashboard-button">
+
+        ← Back to Dashboard
+
+    </a>
+
+
+    <div class="footer">
+
+        SkillTrack Maharashtra © 2026
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

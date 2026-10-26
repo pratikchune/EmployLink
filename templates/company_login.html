@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Login | EmployLink</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+        }
+
+        .container {
+            width: 900px;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px #0004;
+        }
+
+        .welcome {
+            padding: 55px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            background: linear-gradient(145deg, #1e40af, #111827);
+        }
+
+        .logo {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 36px;
+            margin-bottom: 18px;
+        }
+
+        .welcome p {
+            color: #dbeafe;
+            line-height: 1.8;
+        }
+
+        .form-panel {
+            padding: 50px 38px;
+        }
+
+        .form-panel h2 {
+            color: #172554;
+            font-size: 29px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 8px;
+            color: #334155;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px #2563eb20;
+        }
+
+        .password-wrap {
+            display: flex;
+            gap: 8px;
+        }
+
+        .password-wrap input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .show-btn {
+            padding: 0 12px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 28px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            background: #2563eb;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 8px;
+            color: #991b1b;
+            background: #fee2e2;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .success {
+            padding: 12px;
+            border-radius: 8px;
+            color: #166534;
+            background: #dcfce7;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .back {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 30px;
+            }
+
+            .welcome h1 {
+                font-size: 28px;
+            }
+
+            .logo {
+                margin-bottom: 12px;
+            }
+
+            .form-panel {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <section class="welcome">
+            <div class="logo">🏢</div>
+            <h1>Welcome to EmployLink</h1>
+            <p>
+                Find talented students, manage your recruitment
+                opportunities, and connect with the next generation
+                of professionals.
+            </p>
+        </section>
+
+        <section class="form-panel">
+            <h2>Company Login</h2>
+            <p class="subtitle">Sign in to access your company dashboard.</p>
+
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="{{ 'success' if category == 'success' else 'error' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('company_login') }}">
+                <label for="email">Company Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="hr@company.com"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="password">Password</label>
+                <div class="password-wrap">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+                    <button
+                        type="button"
+                        class="show-btn"
+                        onclick="togglePassword()"
+                    >Show</button>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Sign In →
+                </button>
+            </form>
+
+            <a href="{{ url_for('index') }}" class="back">
+                ← Back to Home
+            </a>
+        </section>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const field = document.getElementById("password");
+            const button = document.querySelector(".show-btn");
+
+            if (field.type === "password") {
+                field.type = "text";
+                button.textContent = "Hide";
+            } else {
+                field.type = "password";
+                button.textContent = "Show";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | SkillTrack Maharashtra</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f2a44,
+                    #164e63
+                );
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+        }
+
+
+        /* ================= LOGIN BOX ================= */
+
+        .login-container {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+
+            text-align: center;
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            color: #0f2a44;
+
+            margin-bottom: 8px;
+        }
+
+
+        .logo span {
+
+            color: #0284c7;
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+
+            font-size: 15px;
+        }
+
+
+        /* ================= SUCCESS ================= */
+
+        .success {
+
+            background: #dcfce7;
+
+            border: 1px solid #bbf7d0;
+
+            color: #166534;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= ERROR ================= */
+
+        .error {
+
+            background: #fee2e2;
+
+            border: 1px solid #fecaca;
+
+            color: #b91c1c;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #334155;
+
+            font-size: 14px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+
+        input:focus {
+
+            border-color: #0284c7;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(2, 132, 199, 0.12);
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .login-btn {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            background: #0284c7;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .login-btn:hover {
+
+            background: #0369a1;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ================= REGISTER ================= */
+
+        .register-link {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        .register-link a {
+
+            color: #0284c7;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        .register-link a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* ================= HOME ================= */
+
+        .home-link {
+
+            text-align: center;
+
+            margin-top: 15px;
+        }
+
+
+        .home-link a {
+
+            color: #64748b;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+
+        .home-link a:hover {
+
+            color: #0284c7;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .login-container {
+                padding: 28px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+
+    <div class="logo">
+
+        Skill<span>Track</span>
+
+    </div>
+
+
+    <p class="subtitle">
+
+        Login to your SkillTrack account
+
+    </p>
+
+
+    {% if registered == "success" %}
+
+        <div class="success">
+
+            Account created successfully!
+            Please login.
+
+        </div>
+
+    {% endif %}
+
+
+    {% if error %}
+
+        <div class="error">
+
+            {{ error }}
+
+        </div>
+
+    {% endif %}
+
+
+    <form method="POST">
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+
+                Email Address
+
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+            >
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+
+                Password
+
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+        </div>
+
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+            type="submit"
+            class="login-btn"
+        >
+
+            Login
+
+        </button>
+
+
+    </form>
+
+
+    <div class="register-link">
+
+        Don't have an account?
+
+        <a href="/register">
+
+            Create Account
+
+        </a>
+
+    </div>
+
+
+    <div class="home-link">
+
+        <a href="/">
+
+            ← Back to Home
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

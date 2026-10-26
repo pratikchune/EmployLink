@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EmployLink - Companies</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #172033;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #172033;
+            margin-left: 25px;
+        }
+
+        .container {
+            padding: 60px 8%;
+        }
+
+        .container h1 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: #2563eb;
+        }
+
+        .companies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .company-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .company-card h2 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .company-card p {
+            margin: 8px 0;
+            color: #64748b;
+        }
+
+        .website {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 0;
+            padding: 12px 25px;
+            background: #172033;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Employ<span>Link</span>
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/jobs">Jobs</a>
+            <a href="/companies">Companies</a>
+            <a href="/analytics">Analytics</a>
+            <a href="/login">Login</a>
+        </nav>
+
+    </header>
+
+
+    <div class="container">
+
+        <h1>Registered Companies</h1>
+
+        <div class="companies">
+
+            {% for company in companies %}
+
+            <div class="company-card">
+
+                <h2>{{ company.name }}</h2>
+
+                <p>
+                    <strong>HR:</strong>
+                    {{ company.hr_name }}
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    {{ company.email }}
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    {{ company.phone }}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    {{ company.location }}
+                </p>
+
+                {% if company.website %}
+                <a href="{{ company.website }}" target="_blank" class="website">
+                    Visit Website
+                </a>
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <a href="/" class="back-btn">
+            Back to Home
+        </a>
+
+    </div>
+
+</body>
+
+</html>

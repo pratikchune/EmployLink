@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login - EmployLink</title>
+
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #eef4ff;
+
+            color: #172033;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            background: white;
+
+            padding: 20px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #172033;
+
+        }
+
+
+        .logo span {
+
+            color: #2563eb;
+
+        }
+
+
+        nav a {
+
+            text-decoration: none;
+
+            color: #172033;
+
+            margin-left: 25px;
+
+            font-weight: 500;
+
+        }
+
+
+        nav a:hover {
+
+            color: #2563eb;
+
+        }
+
+
+        /* =========================
+           LOGIN CONTAINER
+        ========================= */
+
+        .login-container {
+
+            min-height: calc(100vh - 85px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px 20px;
+
+        }
+
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .login-card {
+
+            background: white;
+
+            width: 420px;
+
+            padding: 40px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.10);
+
+            text-align: center;
+
+        }
+
+
+        /* =========================
+           ICON
+        ========================= */
+
+        .icon {
+
+            font-size: 55px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .login-card h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .login-card .description {
+
+            color: #64748b;
+
+            line-height: 1.5;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+
+            text-align: left;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: 600;
+
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.10);
+
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-btn {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+        }
+
+
+        .login-btn:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        /* =========================
+           REGISTER SECTION
+        ========================= */
+
+        .register-section {
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #e2e8f0;
+
+        }
+
+
+        .register-section p {
+
+            color: #64748b;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .register-btn {
+
+            display: inline-block;
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #2563eb;
+
+            border-radius: 7px;
+
+            color: #2563eb;
+
+            background: white;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+        }
+
+
+        .register-btn:hover {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+
+        /* =========================
+           BACK HOME
+        ========================= */
+
+        .back-home {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #64748b;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+
+        .back-home:hover {
+
+            color: #2563eb;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+
+            nav {
+
+                text-align: center;
+
+            }
+
+
+            nav a {
+
+                display: inline-block;
+
+                margin: 5px 8px;
+
+            }
+
+
+            .login-card {
+
+                width: 100%;
+
+                max-width: 420px;
+
+                padding: 30px 25px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            Employ<span>Link</span>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/companies">
+                Companies
+            </a>
+
+            <a href="/jobs">
+                Jobs
+            </a>
+
+            <a href="/student-login">
+                Student Login
+            </a>
+
+            <a href="/company-login">
+                Company Login
+            </a>
+
+            <a href="/analytics">
+                Analysis
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         LOGIN SECTION
+    ========================= -->
+
+    <main class="login-container">
+
+
+        <div class="login-card">
+
+
+            <div class="icon">
+
+                🎓
+
+            </div>
+
+
+            <h1>
+
+                Student Login
+
+            </h1>
+
+
+            <p class="description">
+
+                Login to your EmployLink account
+                to explore jobs and manage your
+                applications.
+
+            </p>
+
+
+
+            <!-- LOGIN FORM -->
+
+            <form method="POST"
+                  action="/student-login">
+
+
+                <div class="form-group">
+
+                    <label for="email">
+
+                        Email Address
+
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="password">
+
+                        Password
+
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required>
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="login-btn">
+
+                    Login
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- REGISTER -->
+
+            <div class="register-section">
+
+                <p>
+
+                    New student?
+
+                </p>
+
+
+                <a href="/student-register"
+                   class="register-btn">
+
+                    Register New Student
+
+                </a>
+
+            </div>
+
+
+
+            <!-- BACK HOME -->
+
+            <a href="/"
+               class="back-home">
+
+                ← Back to Home
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

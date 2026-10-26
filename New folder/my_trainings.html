@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Trainings - SkillTrack</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #123b6d;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            color: #123b6d;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #6b7280;
+        }
+
+        /* ================= TRAINING CARD ================= */
+
+        .training-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .training-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .training-name {
+            font-size: 23px;
+            font-weight: bold;
+            color: #123b6d;
+            margin-bottom: 8px;
+        }
+
+        .provider {
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+
+        .completed {
+            background: #dcfce7;
+            color: #166534;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ================= INFO ================= */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .info-box small {
+            display: block;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .info-box strong {
+            color: #111827;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .btn {
+            display: inline-block;
+
+            background: #123b6d;
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #0d2d52;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+            background: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 15px;
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .empty h2 {
+            color: #123b6d;
+            margin-bottom: 10px;
+        }
+
+        .empty p {
+            color: #6b7280;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .info-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .training-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media(max-width: 500px) {
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+    <div class="logo">
+        SkillTrack
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('my_trainings') }}">
+            My Trainings
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <h1>
+            My Completed Trainings
+        </h1>
+
+        <p>
+            View the training programs you have successfully completed.
+        </p>
+
+    </div>
+
+
+    {% if trainings %}
+
+
+        {% for training in trainings %}
+
+
+        <div class="training-card">
+
+
+            <div class="training-top">
+
+
+                <div>
+
+                    <div class="training-name">
+
+                        {{ training.course_name }}
+
+                    </div>
+
+
+                    <div class="provider">
+
+                        Training Provider:
+                        <strong>
+                            {{ training.provider_name }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="completed">
+
+                    ✓ COMPLETED
+
+                </div>
+
+
+            </div>
+
+
+            <!-- INFO -->
+
+            <div class="info-grid">
+
+
+                <div class="info-box">
+
+                    <small>
+                        Duration
+                    </small>
+
+                    <strong>
+
+                        {% if training.duration_months %}
+                            {{ training.duration_months }} Months
+                        {% else %}
+                            Not specified
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <small>
+                        Training Mode
+                    </small>
+
+                    <strong>
+
+                        {{ training.training_mode }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <small>
+                        Started
+                    </small>
+
+                    <strong>
+
+                        {{ training.start_date or 'Not available' }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <small>
+                        Completed
+                    </small>
+
+                    <strong>
+
+                        {{ training.completion_date or 'Not available' }}
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <a
+                href="{{ url_for(
+                    'training_details',
+                    enrollment_id=training.enrollment_id
+                ) }}"
+                class="btn">
+
+                View Details →
+
+            </a>
+
+
+        </div>
+
+
+        {% endfor %}
+
+
+    {% else %}
+
+
+        <div class="empty">
+
+            <h2>
+                No Completed Trainings
+            </h2>
+
+            <p>
+                You have not completed any training programs yet.
+            </p>
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Applications | EmployLink</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            background: #f1f5f9;
+            color: #172554;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .header {
+            padding: 28px;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            background: linear-gradient(120deg, #1d4ed8, #4338ca);
+            color: white;
+        }
+
+        .header h1 {
+            margin-top: 0;
+        }
+
+        .header p {
+            line-height: 1.6;
+            color: #e0e7ff;
+        }
+
+        .application {
+            background: white;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px #0f172a0b;
+            overflow-wrap: anywhere;
+        }
+
+        .application h2 {
+            margin-top: 0;
+            color: #1d4ed8;
+        }
+
+        .application p {
+            color: #475569;
+            line-height: 1.7;
+            margin: 8px 0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 600px) {
+            .header, .application {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <section class="header">
+            <h1>📩 Student Applications</h1>
+            <p>Review applications received for your company's job openings.</p>
+            <p>Total applications: {{ applications|length }}</p>
+        </section>
+
+        {% if applications %}
+            {% for application in applications %}
+                <article class="application">
+                    <h2>{{ application.fullname or "Student" }}</h2>
+
+                    <p>
+                        <strong>Applied For:</strong>
+                        {{ application.job_role or "Not specified" }}
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        {{ application.email or "Not provided" }}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        {{ application.phone or "Not provided" }}
+                    </p>
+
+                    <p>
+                        <strong>Skills:</strong>
+                        {{ application.skills or "Not provided" }}
+                    </p>
+
+                    <p>
+                        <strong>Experience:</strong>
+                        {{ application.experience or "Not specified" }}
+                    </p>
+
+                    <p>
+                        <strong>Passing Year:</strong>
+                        {{ application.passing_year or "Not specified" }}
+                    </p>
+
+                    <p>
+                        <strong>Application Type:</strong>
+                        {{ application.type or "Not specified" }}
+                    </p>
+
+                    <p>
+                        <strong>Applied On:</strong>
+                        {{ application.apply_date or "Not available" }}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="status">
+                            {{ application.status or "Pending" }}
+                        </span>
+                    </p>
+
+                    {% if application.resume %}
+                        <p>
+                            <strong>Resume reference:</strong>
+                            {{ application.resume }}
+                        </p>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        {% else %}
+            <div class="empty">
+                <h2>No applications yet</h2>
+                <p>
+                    Students have not applied for your company's jobs yet.
+                    Applications will appear here when students apply.
+                </p>
+            </div>
+        {% endif %}
+
+        <a href="{{ url_for('company_dashboard') }}" class="btn">
+            ← Back to Dashboard
+        </a>
+
+    </main>
+</body>
+</html>
